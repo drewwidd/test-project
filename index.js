@@ -1,7 +1,14 @@
+const fs = require("fs");
 const express = require("express");
 const app = express();
 const PORT = 8080;
-const server = require("http").createServer(app);
+const server = require("https").createServer(
+  {
+    key: fs.readFileSync('server-key.pem'),
+    cert: fs.readFileSync('server-cert.pem'),
+    requestCert: false,
+    rejectUnauthorized: false
+  },app);
 const io = require("socket.io")(server,{cors:{origin:"*"}})
 server.listen(PORT,() => {
   console.log("Server listening at port: "+PORT)
