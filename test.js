@@ -2,7 +2,7 @@
 const sketchContainer = document.getElementById("sketch-container");
 
 //get socket which only uses websockets as a means of communication
-const socket = io("ws://44.201.208.251:8080");
+const socket = io("ws://44.201.208.251:8080",{secure:true});
 var mySocketId = "";
 
 socket.on("connect", () => {
