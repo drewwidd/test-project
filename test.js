@@ -3,7 +3,7 @@ const sketchContainer = document.getElementById("sketch-container");
 
 //get socket which only uses websockets as a means of communication
 //Change ws to wss for https/ssl support
-const socket = io("ws://44.201.208.251:8080", 
+const socket = io("ws://34.197.155.63:8080", 
     { 
       rejectUnauthorized: false
     })
