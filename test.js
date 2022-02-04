@@ -2,7 +2,8 @@
 const sketchContainer = document.getElementById("sketch-container");
 
 //get socket which only uses websockets as a means of communication
-const socket = io("wss://44.201.208.251:8080", 
+//Change ws to wss for https/ssl support
+const socket = io("ws://44.201.208.251:8080", 
     { 
       rejectUnauthorized: false
     })
@@ -33,7 +34,7 @@ const sketch = (p) => {
         positionY = p.mouseY;
         updatePosition();
     });*/
-    p.frameRate(30); //set framerate to 30, same as server
+    p.frameRate(100); //set framerate to 30, same as server
     socket.on("positions", (data) => {
       //get the data from the server to continually update the positions
       positions = data;

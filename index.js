@@ -2,12 +2,13 @@ const fs = require("fs");
 const express = require("express");
 const app = express();
 const PORT = 8080;
-const server = require("https").createServer(
+//Change http to https for https/ssl support
+const server = require("http").createServer(
   {
-    key: fs.readFileSync('server-key.pem'),
+    /*key: fs.readFileSync('server-key.pem'),
     cert: fs.readFileSync('server-cert.pem'),
     requestCert: false,
-    rejectUnauthorized: false
+    rejectUnauthorized: false*/
   },app);
 const io = require("socket.io")(server,{cors:{origin:"*"}})
 server.listen(PORT,() => {
@@ -37,7 +38,7 @@ io.on("connection", function (socket) {
 });
 
 //send positions every framerate to each client
-const frameRate = 30;
+const frameRate = 100;
 setInterval(() => {
   io.emit("positions", positions);
 }, 1000 / frameRate);
